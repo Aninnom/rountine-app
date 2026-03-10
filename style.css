@@ -1,0 +1,91 @@
+/* 전체 초기화 & 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  /* padding이 크기에 포함되게 */
+}
+
+body {
+  font-family: 'Gowun Dodum', sans-serif;
+  background: #f4f9f0;
+  color: #2a1f12;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 32px 0 24px;
+}
+
+header h1 {
+  font-size: 28px;
+  color: #2d6a4f;
+}
+
+main {
+  max-width: 480px;       /* 너무 넓어지지 않게 */
+  margin: 0 auto;        /* 가운데 정렬 */
+}
+
+/* 루틴 목록 */
+ul {
+  list-style: none; /* 기본 점(•) 제거 */
+  display: flex;
+  flex-direction: column; /* 세로로 나열 */
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li {
+  background: white;
+  padding: 14px 18px 14px 14px;
+  border-radius: 12px;
+  border: 1px solid #e0ede6;
+  font-size: 15px;
+}
+
+li::before {
+  content: "🌱 ";
+}
+
+/* 입력창 영역 */
+.input-wrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+input {
+  flex: 1;               /* 남은 공간 전부 차지 */
+  padding: 10px 14px;
+  border: 1px solid #c8ddd0;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+button {
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+input, button {
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+button:hover {           /* 마우스 올렸을 때 */
+  background: #1b4332;
+}
+
+footer {
+  text-align: center;
+  color: #9b8877;
+  font-size: 12px;
+  margin-top: 40px;
+}
