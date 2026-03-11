@@ -17,11 +17,7 @@
     <main>
         <section>
             <h2>오늘의 루틴</h2>
-            <ul>
-                <li>아침 조깅 30분</li>
-                <li>아침 독서 10분</li>
-                <li>차가운 물 샤워</li>
-            </ul>
+            <ul></ul>
         </section>
 
         <div class="input-wrap">
@@ -33,5 +29,45 @@
     <footer>
         <p>루틴 나무 Ⓒ 2026</p>
     </footer>
+
+    <script>
+        const input = document.querySelector("input");
+        const addBtn = document.querySelector(".input-wrap button"); // 수정된 선택자
+        const list = document.querySelector("ul");
+
+        function addRoutine() {
+            const text = input.value.trim();
+            if (text === "") return;
+
+            const newItem = document.createElement("li");
+
+            // 1. 텍스트와 새싹을 담을 컨테이너 (왼쪽 정렬용)
+            const textGroup = document.createElement("div");
+            textGroup.textContent = "🌱 " + text; // 새싹 추가
+
+            // 클릭 시 취소선 토글 이벤트
+            newItem.addEventListener("click", (e) => {
+                if (e.target !== delBtn) {
+                    textGroup.classList.toggle("completed");
+                }
+            });
+
+            // 2. 삭제 버튼 생성
+            const delBtn = document.createElement("button");
+            delBtn.textContent = "삭제";
+            delBtn.addEventListener("click", () => newItem.remove());
+
+            // 3. 조립
+            newItem.appendChild(textGroup);
+            newItem.appendChild(delBtn);
+            list.appendChild(newItem);
+
+            input.value = "";
+        }
+
+        // 이벤트 리스너
+        addBtn.addEventListener("click", addRoutine);
+        input.addEventListener("keyup", (e) => { if (e.key === "Enter") addRoutine(); });
+    </script>
 </body>
 </html>
