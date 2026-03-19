@@ -45,17 +45,17 @@
             const textGroup = document.createElement("div");
             textGroup.textContent = "🌱 " + text; // 새싹 추가
 
+            // 2. 삭제 버튼 생성
+            const delBtn = document.createElement("button");
+            delBtn.textContent = "삭제";
+            delBtn.addEventListener("click", () => newItem.remove());
+
             // 클릭 시 취소선 토글 이벤트
             newItem.addEventListener("click", (e) => {
                 if (e.target !== delBtn) {
                     textGroup.classList.toggle("completed");
                 }
             });
-
-            // 2. 삭제 버튼 생성
-            const delBtn = document.createElement("button");
-            delBtn.textContent = "삭제";
-            delBtn.addEventListener("click", () => newItem.remove());
 
             // 3. 조립
             newItem.appendChild(textGroup);
