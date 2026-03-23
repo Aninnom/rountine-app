@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
@@ -7,6 +8,14 @@ import models
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     db = SessionLocal()
@@ -17,8 +26,6 @@ def get_db():
 
 class RoutineCreate(BaseModel):
     name: str
-
-app = FastAPI()
 
 @app.get("/")
 def read_root():
