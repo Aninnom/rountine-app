@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const API = "http://localhost:8000"
+const API = "https://rountine-app-production.up.railway.app"
 
 function Routines() {
   const [routines, setRoutines] = useState([]);
