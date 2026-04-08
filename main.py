@@ -44,3 +44,20 @@ def add_routine(routine: RoutineCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_routine)
     return db_routine
+
+# 루틴 삭제
+@app.delete("/routines/{routine_id}")
+def delete_routine(routine_id: int, db: Session = Depends(get_db)):
+    routine = db.query(models.Routine).filter(models.Routine.id == routine_id).first()
+    db.delete(routine)
+    db.commit()
+    return {"message": "삭제 완료"}
+
+# 루틴 완료 체크
+@app.patch("/routines/{routine_id}")
+def toggle_routine(routine_id: int, db: Session = Depends(get_db)):
+    routine = db.query(models.Routine).filter(models.Routine.id == routine_id).first()
+    routine.done = not routine.done
+    db.commit()
+    db.refresh(routine)
+    return routine
