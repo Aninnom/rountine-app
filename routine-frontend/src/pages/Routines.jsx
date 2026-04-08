@@ -10,14 +10,16 @@ function Routines() {
   }, []);
 
   async function loadRoutines() {
-    const res = await fetch(`${API}/routines`);
+    const token = localStorage.getItem("token")
+    const res = await fetch(`${API}/routines?token=${token}`);
     const data = await res.json();
     setRoutines(data);
   }
 
   async function addRoutine() {
     if (input === "") return;
-    await fetch(`${API}/routines`, {
+    const token = localStorage.getItem("token")
+    await fetch(`${API}/routines?token=${token}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: input })
